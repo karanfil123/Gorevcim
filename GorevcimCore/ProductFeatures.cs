@@ -9,15 +9,16 @@ namespace Gorevcim.Core
     public class ProductFeatures:BaseEntity
     {
         public int ProductId { get; set; }
+        public Product Product { get; set; }
         public ProductsBrand ProductsBrand { get; set; }
-        public int ProductsColorId { get; set; }
         public ProductsColor ProductsColor { get; set; }
-        public int ProductCurrencyUnitId { get; set; }
         public ProductCurrencyUnit ProductCurrencyUnit { get; set; }
-        public int ProductMeasurementId { get; set; }
         public ProductMeasurementUnit ProductMeasurementUnit { get; set; }
-        public int ProductWeightUnitsId { get; set; }
         public ProductsWeightUnit ProductsWeightUnit { get; set; }
-       
+        public ProductVatUnit ProductVatUnit { get; set; }
+        public ProductProject ProductProject { get; set; }
+
+        //product tablosu ile diğer tablolar arasındaki ilişki bu tablo üzerinden oluyo
+
     }
 }

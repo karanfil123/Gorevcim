@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gorevcim.Core
 {
-    public class ProductMeasurementUnit:BaseEntity
+    public class ProductProject:BaseEntity
     {
         public string Name { get; set; }
         public string ShortCode { get; set; }

@@ -9,6 +9,6 @@ namespace Gorevcim.Core.UnitOfWork
     public interface IGenericUnitOfWork
     {
         Task CommitAsync();
-        Task Commit();
+        void Commit();
     }
 }

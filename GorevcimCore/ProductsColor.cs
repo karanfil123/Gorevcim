@@ -14,5 +14,7 @@ namespace Gorevcim.Core
         public string ColorFileName { get; set; }
         public string ColorFilepath { get; set; }
         public string Explanation { get; set; }
+        public int ProductFeaturesId { get; set; }
+        public ProductFeatures ProductFeatures { get; set; }
     }
 }

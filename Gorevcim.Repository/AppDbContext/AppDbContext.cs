@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace Gorevcim.Repository.AppDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -21,10 +23,14 @@ namespace Gorevcim.Repository.AppDbContext
         public DbSet<ProductCurrencyUnit> ProductCurrencyUnits { get; set; }
         public DbSet<ProductMeasurementUnit> ProductMeasurementUnits { get; set; }
         public DbSet<ProductsWeightUnit> ProductsWeightUnits { get; set; }
+        public DbSet<ProductVatUnit> ProductVatUnits { get; set; }
+        public DbSet<ProductProject> ProductProjects { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);            
         }
     }
 }
