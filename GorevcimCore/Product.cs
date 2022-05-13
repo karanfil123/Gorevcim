@@ -13,7 +13,7 @@ namespace Gorevcim.Core
         public string Name { get; set; }
         public string Code { get; set; }
         public string Barcode { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public DateTime ExpirationDate { get; set; }       
         public bool IsMixture { get; set; }
         public string Explanation { get; set; }
         public string LogoBase64Content { get; set; }
