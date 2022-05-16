@@ -20,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//**************sonradan eklenen kodlar baþlangýç*****************///
+//**************SONRADAN EKELENEN KODLAR BAÞLANGIÇ*****************///
 
 builder.Services.AddScoped<IGenericUnitOfWork,UnitOfWork>();
 
@@ -40,7 +40,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
-//**************sonradan eklenen kodlar bitiþ*****************///
+//**************SONRADAN EKELENEN KODLAR BÝTÝÞ*****************///
 
 
 var app = builder.Build();
