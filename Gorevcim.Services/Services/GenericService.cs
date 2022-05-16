@@ -1,4 +1,7 @@
-﻿using Gorevcim.Core.Services;
+﻿using Gorevcim.Core.Repositories;
+using Gorevcim.Core.Services;
+using Gorevcim.Core.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,49 +13,59 @@ namespace Gorevcim.Services.Services
 {
     public class GenericService<T> : IGenericService<T> where T : class
     {
-        public Task AddAsync(T entity)
+        private readonly IGenericRepository<T> _repository;
+        private readonly IGenericUnitOfWork _unitOfWork;
+
+        public GenericService(IGenericRepository<T> repository, IGenericUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
-        public Task AddRangeAsync(IEnumerable<T> entities)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _repository.AddAsync(entity);
+            await _unitOfWork.CommitAsync();
+            return entity;
         }
 
-        public Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            await _repository.AddRangeAsync(entities);
+            await _unitOfWork.CommitAsync();
+            return entities;
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await _repository.AnyAsync(expression);
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAll().ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(int Id)
+        public async Task<T> GetByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByIdAsync(Id);            
         }
 
-        public Task RemoveAsync(T entity)
+        public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            _repository.Remove(entity);
         }
 
-        public Task RemoveRangeAsync(IEnumerable<T> entities)
+        public void RemoveRange(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            _repository.RemoveRange(entities);
         }
 
-        public Task UpdateAsync(T entity)
+        public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _repository.Update(entity);
+            _unitOfWork.Commit();
         }
     }
 }

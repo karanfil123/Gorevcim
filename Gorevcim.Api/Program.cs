@@ -1,6 +1,14 @@
 using Gorevcim.Repository.AppDbContext;
+using Gorevcim.Repository.Repositories.UnitOfWorks;
+using Gorevcim.Core.Repositories;
+using Gorevcim.Core.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Gorevcim.Core.Services;
+using Gorevcim.Repository.Repositories;
+using Gorevcim.Services.Services;
+using Gorevcim.Services.Mapping;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +19,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//**************sonradan eklenen kodlar baþlangýç*****************///
+
+builder.Services.AddScoped<IGenericUnitOfWork,UnitOfWork>();
+
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+
+builder.Services.AddScoped(typeof(IGenericService<>),typeof(GenericService<>));
+
+builder.Services.AddAutoMapper(typeof(MapProfiles));
+
+
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
@@ -19,6 +39,9 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         
     });
 });
+
+//**************sonradan eklenen kodlar bitiþ*****************///
+
 
 var app = builder.Build();
 
