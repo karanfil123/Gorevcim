@@ -16,17 +16,17 @@ namespace Gorevcim.Repository.Configurations
             
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).UseIdentityColumn(1, 1);            
-            builder.Property(p => p.Name).IsRequired().HasMaxLength(350);
-            builder.Property(p => p.Code).IsRequired().HasMaxLength(150);
-            builder.Property(p => p.Barcode).IsRequired().HasMaxLength(350);
-            builder.Property(p => p.Explanation).IsRequired().HasMaxLength(1000);
-            builder.Property(p => p.LogoFileName).IsRequired().HasMaxLength(550);
-            builder.Property(p => p.LogoFilePath).IsRequired().HasMaxLength(550);
-            builder.Property(p => p.TechnicalWebUrl).IsRequired().HasMaxLength(550);
-            builder.Property(p => p.ExplanationWebUrl).IsRequired().HasMaxLength(550);
-            builder.Property(p => p.PurchasePrice).IsRequired().HasColumnType("decimal(18,2)");
-            builder.Property(p => p.SalePrice).IsRequired().HasColumnType("decimal(18,2)");
-            builder.Property(p => p.Stock).IsRequired();
+            builder.Property(p => p.Name).HasMaxLength(350);
+            //builder.Property(p => p.Code).IsRequired().HasMaxLength(150);
+            //builder.Property(p => p.Barcode).IsRequired().HasMaxLength(350);
+            //builder.Property(p => p.Explanation).IsRequired().HasMaxLength(1000);
+            //builder.Property(p => p.LogoFileName).IsRequired().HasMaxLength(550);
+            //builder.Property(p => p.LogoFilePath).IsRequired().HasMaxLength(550);
+            //builder.Property(p => p.TechnicalWebUrl).IsRequired().HasMaxLength(550);
+            //builder.Property(p => p.ExplanationWebUrl).IsRequired().HasMaxLength(550);
+            //builder.Property(p => p.PurchasePrice).HasColumnType("decimal(18,2)");
+            //builder.Property(p => p.SalePrice).HasColumnType("decimal(18,2)");
+           
 
             builder.HasOne(p => p.Category).WithMany(p => p.Products).HasForeignKey(x => x.CategoryId);//bire çok ilişki
 

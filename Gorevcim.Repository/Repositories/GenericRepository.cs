@@ -64,9 +64,6 @@ namespace Gorevcim.Repository.Repositories
         {
             return _dbSet.Where(expression);
         }
-        Task IGenericRepository<T>.AddAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

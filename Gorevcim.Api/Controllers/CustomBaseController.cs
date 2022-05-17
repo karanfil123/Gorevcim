@@ -8,6 +8,12 @@ namespace Gorevcim.Api.Controllers
     [ApiController]
     public class CustomBaseController : ControllerBase
     {
+
+        //metot tanılaması yapıyoruz
+        //Geriye Iactionresult dönsün
+        //CreateActinresult oluşturulsn diğer productControllerlarımı implement 
+        //t data dönebilir genel olarakta customResponse alsın 
+        //Aşagıdaki tanımlamada endpoint olmadığı iin no action
        [NonAction]
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
         {

@@ -13,7 +13,7 @@ namespace Gorevcim.Core.Dtos
         public List<String> Errors { get; set; }
         public static CustomResponseDto<T> Success(int statusCode, T data)
         {
-            return new CustomResponseDto<T> { Data = data, StatusCode = statusCode };
+            return new CustomResponseDto<T> { Data = data, StatusCode = statusCode };       
         }
         public static CustomResponseDto<T> Success(int statusCode)
         {

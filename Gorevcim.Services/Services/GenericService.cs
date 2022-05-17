@@ -49,23 +49,25 @@ namespace Gorevcim.Services.Services
 
         public async Task<T> GetByIdAsync(int Id)
         {
-            return await _repository.GetByIdAsync(Id);            
-        }
+            return await _repository.GetByIdAsync(Id);
+        }       
 
-        public void Remove(T entity)
+        public async Task RemoveAsync(T entity)
         {
             _repository.Remove(entity);
-        }
+            await _unitOfWork.CommitAsync();
+        }       
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
             _repository.RemoveRange(entities);
-        }
+            await _unitOfWork.CommitAsync();
+        }      
 
-        public void Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _repository.Update(entity);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
         }
     }
 }

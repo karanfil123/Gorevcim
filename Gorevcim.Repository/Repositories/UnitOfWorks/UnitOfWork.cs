@@ -1,15 +1,15 @@
 ﻿using Gorevcim.Core.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gorevcim.Repository.Repositories.UnitOfWorks
 {
     public class UnitOfWork : IGenericUnitOfWork
     {
         private readonly AppDbContext.AppDbContext _context;
+
+        public UnitOfWork(AppDbContext.AppDbContext context)
+        {
+            _context = context;
+        }
 
         public void Commit()
         {
@@ -18,7 +18,7 @@ namespace Gorevcim.Repository.Repositories.UnitOfWorks
 
         public async Task CommitAsync()
         {
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }
