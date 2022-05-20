@@ -22,13 +22,28 @@ builder.Services.AddSwaggerGen();
 
 //**************SONRADAN EKELENEN KODLAR BAÞLANGIÇ*****************///
 
-builder.Services.AddScoped<IGenericUnitOfWork,UnitOfWork>();
+builder.Services.AddScoped<IGenericUnitOfWork, UnitOfWork>();
 
-builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-builder.Services.AddScoped(typeof(IGenericService<>),typeof(GenericService<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 
 builder.Services.AddAutoMapper(typeof(MapProfiles));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductColorRepository, ProductColorRepository>();
+builder.Services.AddScoped<IProductColorService, ProductColorService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IProductBrandService, ProductBrandService>();
+builder.Services.AddScoped<IProductBrandRepository, ProductBrandRepository>();
+
+builder.Services.AddScoped<IProductVatUnitService, ProductVatUnitService>();
+builder.Services.AddScoped<IProductVatUnitRepository, ProductVatUnitRepository>();
 
 
 builder.Services.AddDbContext<AppDbContext>(x =>
@@ -36,7 +51,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
     {
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
-        
+
     });
 });
 

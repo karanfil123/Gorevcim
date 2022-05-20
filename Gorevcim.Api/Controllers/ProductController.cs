@@ -12,53 +12,59 @@ namespace Gorevcim.Api.Controllers
     public class ProductController : CustomBaseController
     {
         //Mapping işlemi 
-        private readonly IMapper _mapper;
         //Controller sadece servislere erişebilmelidir.
-        private readonly IGenericService<Product> _service;
+        private readonly IMapper _mapper;
+        private readonly IProductService _productService;
 
-        public ProductController(IMapper mapper, IGenericService<Product> service)
+        public ProductController(IMapper mapper, IProductService productService)
         {
             _mapper = mapper;
-            _service = service;
+            _productService = productService;
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductCategories()
+        {
+            return CreateActionResult(await _productService.GetProductsCategory());
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> ProductGetAll()
         {
-            var product = await _service.GetAllAsync();
+            var product = await _productService.GetAllAsync();
             var productDtos = _mapper.Map<List<ProductDto>>(product.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> ProductGetById(int id)
         {
-            var product = await _service.GetByIdAsync(id);
+            var product = await _productService.GetByIdAsync(id);
             var productDtos = _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productDtos));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(ProductDto productDto)
+        public async Task<IActionResult> ProductSave(ProductDto productDto)
         {
-            var product = await _service.AddAsync(_mapper.Map<Product>(productDto));
-                       
+            var product = await _productService.AddAsync(_mapper.Map<Product>(productDto));
+
             var productsDto = _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productsDto));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(ProductDto productDto)
+        public async Task<IActionResult> ProductUpdate(ProductDto productDto)
         {
-            await _service.UpdateAsync(_mapper.Map<Product>(productDto));
+            await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Remove(int id)
+        public async Task<IActionResult> ProductRemove(int id)
         {
-            var products = await _service.GetByIdAsync(id);
-            await _service.RemoveAsync(products);
+            var products = await _productService.GetByIdAsync(id);
+            await _productService.RemoveAsync(products);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
