@@ -10,5 +10,10 @@ namespace Gorevcim.Core.Dtos
     {
         public string Name { get; set; }
         public string Code { get; set; }
+        public string ColorBase64Content { get; set; }
+        public string ColorFileName { get; set; }
+        public string ColorFilepath { get; set; }
+        public string Explanation { get; set; }
+        public int ProductFeaturesId { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace Gorevcim.Core.Repositories
 {
     public interface IProductColorRepository:IGenericRepository<ProductsColor>
     {
-        Task<List<Product>> GetProductColorByProduct(int productId);
+        //Task<List<Product>> GetProductColorByProduct(int productId);
     }
 }

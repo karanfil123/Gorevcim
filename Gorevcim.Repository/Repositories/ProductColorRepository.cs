@@ -16,9 +16,9 @@ namespace Gorevcim.Repository.Repositories.UnitOfWorks
 
         }
 
-        public async Task<List<Product>> GetProductColorByProduct(int productId)
-        {
-            return await _context.ProductsColors.Include(x=>x.ProductFeatures)
-        }
+        //public async Task<List<Product>> GetProductColorByProduct(int productId)
+        //{
+        //    return await _context.ProductsColors.Include(x => x.ProductFeatures).Where(x=>x.ProductFeaturesId == productId).ToListAsync();
+        //}
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Gorevcim.Core.Repositories;
 using Gorevcim.Core.Services;
 using Gorevcim.Core.UnitOfWork;
+using Gorevcim.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -49,20 +50,25 @@ namespace Gorevcim.Services.Services
 
         public async Task<T> GetByIdAsync(int Id)
         {
-            return await _repository.GetByIdAsync(Id);
-        }       
+            var hasProduct = await _repository.GetByIdAsync(Id);
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name} tablosunda {Id} olan  kayıt bulunamadı.");
+            }
+            return hasProduct;
+        }
 
         public async Task RemoveAsync(T entity)
         {
             _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
-        }       
+        }
 
         public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
             _repository.RemoveRange(entities);
             await _unitOfWork.CommitAsync();
-        }      
+        }
 
         public async Task UpdateAsync(T entity)
         {
