@@ -18,7 +18,6 @@ namespace Gorevcim.Repository.Configurations
             builder.Property(c => c.Id).UseIdentityColumn(1,1);                      
 
             builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
-            
 
             builder.ToTable("Categories");
         }

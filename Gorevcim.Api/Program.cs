@@ -1,24 +1,17 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
+using Gorevcim.Api.Filters;
+using Gorevcim.Api.MiddleWare;
+using Gorevcim.Api.Modules;
 using Gorevcim.Repository.AppDbContext;
-using Gorevcim.Repository.Repositories.UnitOfWorks;
-using Gorevcim.Core.Repositories;
-using Gorevcim.Core.UnitOfWork;
+using Gorevcim.Services.Mapping;
+using Gorevcim.Services.Validations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Gorevcim.Core.Services;
-using Gorevcim.Repository.Repositories;
-using Gorevcim.Services.Services;
-using Gorevcim.Services.Mapping;
-using FluentValidation.AspNetCore;
-using Gorevcim.Core.Dtos;
-using Gorevcim.Services.Validations;
-using Gorevcim.Api.Filters;
-using Microsoft.AspNetCore.Mvc;
-using Gorevcim.Api.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
-
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -38,45 +31,24 @@ builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilte
 
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductBrandValidator>());
 
-builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });  //
+builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
-// Add validation services son
-
-
-builder.Services.AddScoped<IGenericUnitOfWork, UnitOfWork>();
-
+// Add filter
+builder.Services.AddScoped(typeof(NotFoundFilters<>));
 builder.Services.AddAutoMapper(typeof(MapProfiles));
-
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
-builder.Services.AddScoped<IProductService, ProductService>();
-
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<IProductColorRepository, ProductColorRepository>();
-builder.Services.AddScoped<IProductColorService, ProductColorService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-
-builder.Services.AddScoped<IProductBrandService, ProductBrandService>();
-builder.Services.AddScoped<IProductBrandRepository, ProductBrandRepository>();
-
-builder.Services.AddScoped<IProductVatUnitService, ProductVatUnitService>();
-builder.Services.AddScoped<IProductVatUnitRepository, ProductVatUnitRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
     {
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
-
     });
 });
 
 //**************SONRADAN EKLENEN KODLAR BÝTÝÞ*****************///
 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepositoryServiceModules()));
 
 var app = builder.Build();
 
@@ -88,9 +60,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 ///***********************///
 app.UsecustomException();
 ///***********************///
+
 app.UseAuthorization();
 
 app.MapControllers();
