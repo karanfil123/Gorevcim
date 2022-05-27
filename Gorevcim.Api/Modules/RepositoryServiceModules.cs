@@ -30,6 +30,24 @@ namespace Gorevcim.Api.Modules
             builder.RegisterType<ProductColorService>().As<IProductColorService>();
             builder.RegisterType<ProductColorRepository>().As<IProductColorRepository>();
 
+            builder.RegisterType<ProductFeaturesService>().As<IProductFeaturesService>();
+            builder.RegisterType<ProductFeaturesRepository>().As<IProductFeaturesRepository>();
+
+            builder.RegisterType<ProductCurrencyService>().As<IProductCurrencyService>();
+            builder.RegisterType<ProductCurrencyRepository>().As<IProductCurrencyUnitRepository>();
+
+            builder.RegisterType<ProductMeasurementRepository>().As<IProductMeasurementUnitRepository>();
+            builder.RegisterType<ProductMeasurementService>().As<IProductMeasurementUnitService>();
+
+            builder.RegisterType<ProductVatUnitRepository>().As<IProductVatUnitRepository>();
+            builder.RegisterType<ProductVatUnitService>().As<IProductVatUnitService>();
+
+            builder.RegisterType<ProductProjectRepository>().As<IProductProjectRepository>();
+            builder.RegisterType<ProductVatUnitService>().As<IProductVatUnitService>();
+
+            builder.RegisterType<ProductWeightUnitRepository>().As<IProductWeightUnitRepository>();
+            builder.RegisterType<ProductWeightUnitService>().As<IProductWeightUnitService>();
+
             var repository = Assembly.GetAssembly(typeof(AppContext));
             var service = Assembly.GetAssembly(typeof(MapProfiles));
             var api = Assembly.GetExecutingAssembly();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gorevcim.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,12 @@ namespace Gorevcim.Core
 {
     public class Product:BaseEntity
     {
+        //public int CompanyId { get; set; }
+        //public Company Company { get; set; }
+
         public int CategoryId { get; set; }
-        public Category Category { get; set; }      
+        public Category Category { get; set; }
+   
         public string Name { get; set; }
         public string Code { get; set; }
         public string Barcode { get; set; }
@@ -24,6 +29,6 @@ namespace Gorevcim.Core
         public decimal PurchasePrice { get; set; }
         public decimal SalePrice { get; set; }
         public int Stock { get; set; }
-        public ProductFeatures ProductFeatures { get; set; }
+        public ICollection<ProductFeatures> ProductFeatures { get; set; }
     }
 }

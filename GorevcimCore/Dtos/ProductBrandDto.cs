@@ -13,5 +13,6 @@ namespace Gorevcim.Core.Dtos
         public string LogoBase64Content { get; set; }
         public string LogoFileName { get; set; }
         public string LogoFilePath { get; set; }
+        public int ProductFeaturesId { get; set; }
     }
 }

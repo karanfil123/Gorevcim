@@ -16,10 +16,7 @@ namespace Gorevcim.Repository.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).UseIdentityColumn(1, 1);
 
-            builder.HasOne(x=>x.Product).WithOne(x=>x.ProductFeatures).HasForeignKey<ProductFeatures>(x=>x.ProductId);
-           
-
-
+            builder.HasOne(x=>x.Product).WithMany(x=>x.ProductFeatures).HasForeignKey(x=>x.ProductId);      
         }
     }
 }

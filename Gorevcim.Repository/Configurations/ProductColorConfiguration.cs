@@ -16,10 +16,10 @@ namespace Gorevcim.Repository.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).UseIdentityColumn(1, 1);
 
-            builder.Property(x=>x.Name).HasMaxLength(250).IsRequired();
-            builder.Property(x=>x.Code).HasMaxLength(250).IsRequired();
-            builder.Property(x=>x.Explanation).HasMaxLength(1000).IsRequired();
-            builder.Property(x=>x.ColorFilepath).HasMaxLength(250).IsRequired();
+            builder.Property(x => x.Name).HasMaxLength(250);
+            builder.Property(x => x.Code).HasMaxLength(250);
+            builder.Property(x => x.Explanation).HasMaxLength(1000);
+            builder.Property(x => x.ColorFilepath).HasMaxLength(250);
 
             builder.HasOne(x=>x.ProductFeatures).WithOne(x=>x.ProductsColor).HasForeignKey<ProductsColor>(x=>x.ProductFeaturesId);
         }

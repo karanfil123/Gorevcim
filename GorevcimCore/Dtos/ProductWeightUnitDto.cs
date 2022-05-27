@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Gorevcim.Core.Dtos
 {
-    public class ProductWeightUnitDto:BaseDto
+    public class ProductWeightUnitDto : BaseDto
     {
         public string Name { get; set; }
-    public string ShortCode { get; set; }
-}
+        public string ShortCode { get; set; }
+        public int ProductFeaturesId { get; set; }
+
+    }
 }

@@ -10,5 +10,7 @@ namespace Gorevcim.Core.Dtos
     {
         public string Name { get; set; }
         public string ShortCode { get; set; }
+        public int ProductFeaturesId { get; set; }
+
     }
 }

@@ -17,9 +17,9 @@ namespace Gorevcim.Repository.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).UseIdentityColumn(1, 1);           
 
-            builder.Property(pc=>pc.Name).IsRequired().HasMaxLength(250);
-            builder.Property(pc=>pc.ShortCode).IsRequired().HasMaxLength(250);
-            builder.Property(pc=>pc.Explanation).IsRequired().HasMaxLength(1000);
+            builder.Property(pc=>pc.Name).HasMaxLength(250);
+            builder.Property(pc=>pc.ShortCode).HasMaxLength(250);
+            builder.Property(pc=>pc.Explanation).HasMaxLength(1000);
 
             builder.HasOne(x => x.ProductFeatures).WithOne(x => x.ProductCurrencyUnit).HasForeignKey<ProductCurrencyUnit>(x => x.ProductFeaturesId);
         }

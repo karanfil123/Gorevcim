@@ -4,6 +4,7 @@ using Gorevcim.Repository.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gorevcim.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext.AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220526144504_mg1")]
+    partial class mg1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,15 +170,13 @@ namespace Gorevcim.Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Barcode")
-                        .HasMaxLength(350)
-                        .HasColumnType("nvarchar(350)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CreateUserId")
                         .HasColumnType("int");
@@ -188,12 +188,10 @@ namespace Gorevcim.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Explanation")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExplanationWebUrl")
-                        .HasMaxLength(550)
-                        .HasColumnType("nvarchar(550)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -232,12 +230,10 @@ namespace Gorevcim.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoFileName")
-                        .HasMaxLength(550)
-                        .HasColumnType("nvarchar(550)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoFilePath")
-                        .HasMaxLength(550)
-                        .HasColumnType("nvarchar(550)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(350)
@@ -253,8 +249,7 @@ namespace Gorevcim.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TechnicalWebUrl")
-                        .HasMaxLength(550)
-                        .HasColumnType("nvarchar(550)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -276,8 +271,8 @@ namespace Gorevcim.Repository.Migrations
                             CategoryId = 1,
                             Code = "123AS",
                             CreateUserId = 0,
-                            CreatedDate = new DateTime(2022, 5, 27, 16, 58, 11, 417, DateTimeKind.Local).AddTicks(140),
-                            ExpirationDate = new DateTime(2022, 5, 27, 16, 58, 11, 417, DateTimeKind.Local).AddTicks(149),
+                            CreatedDate = new DateTime(2022, 5, 26, 17, 45, 4, 348, DateTimeKind.Local).AddTicks(791),
+                            ExpirationDate = new DateTime(2022, 5, 26, 17, 45, 4, 348, DateTimeKind.Local).AddTicks(800),
                             Explanation = "sdfklsdjlfkds",
                             ExplanationWebUrl = "sdjfhsdf",
                             IsActive = false,
@@ -299,7 +294,7 @@ namespace Gorevcim.Repository.Migrations
                             SalePrice = 110m,
                             Stock = 12,
                             TechnicalWebUrl = "klsdjfsd",
-                            UpdateDate = new DateTime(2022, 5, 27, 16, 58, 11, 417, DateTimeKind.Local).AddTicks(148),
+                            UpdateDate = new DateTime(2022, 5, 26, 17, 45, 4, 348, DateTimeKind.Local).AddTicks(799),
                             UpdateUserId = 0
                         });
                 });
@@ -432,7 +427,8 @@ namespace Gorevcim.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("ProductFeatures");
                 });
@@ -924,8 +920,8 @@ namespace Gorevcim.Repository.Migrations
             modelBuilder.Entity("Gorevcim.Core.ProductFeatures", b =>
                 {
                     b.HasOne("Gorevcim.Core.Product", "Product")
-                        .WithMany("ProductFeatures")
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProductFeatures")
+                        .HasForeignKey("Gorevcim.Core.ProductFeatures", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
