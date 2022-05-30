@@ -20,7 +20,7 @@ namespace Gorevcim.Services.Mapping
             CreateMap<ProductsWeightUnit, ProductWeightUnitDto>().ReverseMap();
             CreateMap<Product, ProductCategoryDto>();
             CreateMap<Category, CategoryProductDto>();
-            //CreateMap<ProductsColor, ProductColorDto>().ForMember(x => x.ProductFeaturesId, c => c.MapFrom(c => new List<Product> { c.ProductFeatures.Product }));
+          
         }
     }
 }
