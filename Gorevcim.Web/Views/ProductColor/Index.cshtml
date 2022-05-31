@@ -1,0 +1,46 @@
+﻿@model List<ProductColorDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-editable table-nowrap align-middle table-edits">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ColorName</th>
+                            <th>Code</th>
+                            <th>LogoBase64Content</th>
+                            <th>LogoFileName</th>
+                            <th>LogoFilePath</th>
+                            <th>Explanation</th>
+                            <th>ProductFeaturesId</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Code</td>
+                                <td>@item.ColorBase64Content</td>
+                                <td>@item.ColorFileName</td>
+                                <td>@item.ColorFilepath</td>
+                                <td>@item.Explanation</td>
+                                <td>@item.ProductFeaturesId</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+

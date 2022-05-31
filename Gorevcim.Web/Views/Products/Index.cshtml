@@ -1,0 +1,49 @@
+﻿@model List<ProductCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-editable table-nowrap align-middle table-edits">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kategori</th>
+                            <th>Adı</th>
+                            <th>Kod</th>
+                            <th>Barkod</th>
+                            <th>Satış Fiyatı</th>
+                            <th>Tecnichal Web Url</th>
+                            <th>Explanation Web Url</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.Name</td>
+                                <td>@item.Code</td>
+                                <td>@item.Barcode</td>
+                                <td>@item.SalePrice</td>
+                                <td>@item.TechnicalWebUrl</td>
+                                <td>@item.ExplanationWebUrl</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
