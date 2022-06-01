@@ -25,6 +25,7 @@ namespace Gorevcim.Services.Services
             return CustomResponseDto<List<ProductCategoryDto>>.Success(200, productDtos);
         }
 
+
         public async Task<List<ProductCategoryDto>> GetWebProductCategories()
         {
             var products = await _producRepository.GetProductCategory();

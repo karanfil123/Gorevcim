@@ -22,5 +22,6 @@ namespace Gorevcim.Web.Controllers
             var brandDto = _mapper.Map<List<ProductBrandDto>>(brand.ToList());
             return View(brandDto);
         }
+       
     }
 }
