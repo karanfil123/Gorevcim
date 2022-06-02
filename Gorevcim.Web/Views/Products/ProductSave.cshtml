@@ -1,97 +1,10 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "ProductSave";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model List<ProductCategoryDto>
 
-<div class="col-12">
-    <div class="col-3">
-        <div class="row">
-            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#myModal" ">
-                    Ekle
-                    <i class="fas fa-plus-square"></i>
-                </button>
-                <button type="button" class="btn btn-outline-danger">
-                    Sil
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-                <button type="button" class="btn btn-outline-primary">
-                    Düzenle
-                    <i class="fas fa-edit"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+@model ProductDto
 
-
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                ...
-            </div>
-        </div>
-    </div>
-
-    <br />
-    <div class="card">
-        <div class="card-body">
-
-            <div class="table-responsive">
-                <table class="table table-editable table-nowrap align-middle table-edits">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Kategori</th>
-                            <th>Adı</th>
-                            <th>Kod</th>
-                            <th>Barkod</th>
-                            <th>Satış Fiyatı</th>
-                            <th>Tecnichal Web Url</th>
-                            <th>Explanation Web Url</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                       
-                        {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Category.Name</td>
-                            <td>@item.Name</td>
-                            <td>@item.Code</td>
-                            <td>@item.Barcode</td>
-                            <td>@item.SalePrice</td>
-                            <td><a href="@item.TechnicalWebUrl ">Teknik özellik syfasına git</a></td>
-                            <td><a href="@item.ExplanationWebUrl ">Açıklama Sayfasına Git</a></td>
-
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Modal Heading</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                
 <div class="col-12">
     <div class="card">
         <div class="card-body">
@@ -158,11 +71,5 @@
     </div>
 </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+
+
