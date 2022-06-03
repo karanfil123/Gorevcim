@@ -22,10 +22,7 @@ namespace Gorevcim.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-
-            var result = await _productService.GetWebProductCategories();
-            
+            var result = await _productService.GetWebProductCategories();            
             return View(result);
         }
 
@@ -57,6 +54,6 @@ namespace Gorevcim.Web.Controllers
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
             return View(productDto);
         }
-       
+     
     }
 }

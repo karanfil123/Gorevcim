@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "CategorySave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model CategoryDto
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="Category" method="post" asp-action="CategorySave" class="needs-validation" novalidate>
+
+
+                <h4 class="card-title">Textual inputs</h4>
+
+                
+                <div class="mb-3 row">
+                    <label asp-for="Name" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="Name" id="ProductNameSave" placeholder="Ürün adını giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                
+                <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Kategori Ekle</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

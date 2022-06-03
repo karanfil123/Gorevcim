@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "BrandSave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ProductBrandDto
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="ProductBrand" method="post" asp-action="BrandSave" class="needs-validation" novalidate>
+
+
+                <h4 class="card-title">Textual inputs</h4>
+
+                
+                <div class="mb-3 row">
+                    <label asp-for="BrandsName" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="BrandsName" id="BrandNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen marka adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="LogoBase64Content" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="LogoBase64Content" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen LogoBase64Content alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="LogoFileName" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="LogoFileName" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="LogoFilePath" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="LogoFilePath" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                  <div class="mb-3 row">
+                    <label asp-for="ProductFeaturesId" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="ProductFeaturesId" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                
+                <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Marka Ekle</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

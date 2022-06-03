@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "ColorSave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ProductColorDto
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <form asp-controller="ProductColor" method="post" asp-action="ColorSave" class="needs-validation" novalidate>
+
+
+                <h4 class="card-title">Textual inputs</h4>
+
+                
+                <div class="mb-3 row">
+                    <label asp-for="Name" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="Name" id="BrandNameSave" placeholder="Ürün renk adı giriniz">
+                        <div class="invalid-feedback">Lütfen marka adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Code" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="Code" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen LogoBase64Content alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="ColorBase64Content" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="ColorBase64Content" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="ColorFileName" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="ColorFileName" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                 <div class="mb-3 row">
+                    <label asp-for="ColorFilepath" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="ColorFilepath" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                 <div class="mb-3 row">
+                    <label asp-for="Explanation" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="Explanation" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                  <div class="mb-3 row">
+                    <label asp-for="ProductFeaturesId" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="ProductFeaturesId" id="ProductNameSave" placeholder="Ürün marka adı giriniz">
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+                    </div>
+                </div>
+                
+                <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Marka Ekle</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
