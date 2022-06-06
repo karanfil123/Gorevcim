@@ -12,122 +12,106 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <a asp-area="" asp-controller="Products" asp-action="ProductSave"  class="btn btn-success waves-effect waves-light"><i class="mdi mdi-plus me-2"></i>Ürün Ekle</a>
+                            <a asp-area="" asp-controller="Products" asp-action="ProductSave" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-plus me-2"></i>Ürün Ekle</a>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-inline float-md-end mb-3">
-                            <div class="search-box ms-2">
-                                <div class="position-relative">
-                                    <input type="text" class="form-control rounded bg-light border-0" placeholder="Ara...">
-                                    <i class="mdi mdi-magnify search-icon"></i>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
                 </div>
                 <!-- end row -->
-                <div class="table-responsive mb-4">
-                    <table class="table table-centered table-nowrap mb-0">
-                        <thead>
+
+                <table class="table table-centered" id="ProductsCategoryTable">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Barcode</th>
+                            <th scope="col">Sale Price</th>
+                            <th scope="col">TechnicalWebUrl</th>
+                            <th scope="col">ExplanationWebUrl</th>
+                            <th scope="col" style="width: 200px;">Processing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th scope="col" style="width: 50px;">
-                                    <div class="form-check font-size-16">
-                                        <input type="checkbox" class="form-check-input" id="contacusercheck">
-                                        <label class="form-check-label" for="contacusercheck"></label>
-                                    </div>
-                                </th>
-                                <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Code</th>
-                                <th scope="col">Barcode</th>
-                                <th scope="col">Sale Price</th>
-                                <th scope="col">TechnicalWebUrl</th>
-                                <th scope="col">ExplanationWebUrl</th>
-                                <th scope="col" style="width: 200px;">Processing</th>
+                                <td>   @item.Id </td>
+                                <td>@item.Name</td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.Code</td>
+                                <td>@item.Barcode</td>
+                                <td>@item.SalePrice</td>
+                                <td>@item.TechnicalWebUrl</td>
+                                <td>@item.ExplanationWebUrl</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="/Products/ProductUpdate/@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="/Products/ProductDelete/@item.Id" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="#">Ürün Detay 1</a>
+                                                <a class="dropdown-item" href="#">Ürün Detay 2</a>
+                                                <a class="dropdown-item" href="#">Ürün Detay 3</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <th scope="row">
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="contacusercheck1">
-                                            <label class="form-check-label" for="contacusercheck1"></label>
-                                        </div>
-                                    </th>
-                                    <td>   @item.Id </td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Category.Name</td>
-                                    <td>@item.Code</td>
-                                    <td>@item.Barcode</td>
-                                    <td>@item.SalePrice</td>
-                                    <td>@item.TechnicalWebUrl</td>
-                                    <td>@item.ExplanationWebUrl</td>
-                                    <td>
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item">
-                                                <a href="/Products/ProductUpdate/@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="/Products/ProductDelete/@item.Id" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                                            </li>
-                                            <li class="list-inline-item dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                    <i class="uil uil-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Ürün Detay 1</a>
-                                                    <a class="dropdown-item" href="#">Ürün Detay 2</a>
-                                                    <a class="dropdown-item" href="#">Ürün Detay 3</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            }
-
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-sm-6">
-                        <div>
-                            <p class="mb-sm-0">Showing 1 to 10 of 12 entries</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="float-sm-end">
-                            <ul class="pagination mb-sm-0">
-                                <li class="page-item disabled">
-                                    <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </div>
 </div>
 
+@section Scripts{
+<script type="text/javascript">
+       $(document).ready(function() {
+       $('#ProductsCategoryTable').DataTable(
+    {
+           language :{
+
+        info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+        infoEmpty: "Kayıt yok",
+        loadingRecords: "Yükleniyor...",
+         zeroRecords: "Eşleşen kayıt bulunamadı",
+          search: "Arama:",
+        infoFiltered: "(toplam _MAX_ kayıt içerisinden bulunan)",
+
+         buttons: {
+            copyTitle: "Panoya kopyalandı.",
+            copySuccess: "Panoya %d satır kopyalandı",
+            copy: "kopyala",
+            print:"Yazdır",
+            },
+        paginate: {
+            first: "İlk",
+            last: "Son",
+            next: "Sonraki",
+            previous: "Önceki"
+        },
+
+           },
+           dom: 'Bfrtip',
+           buttons:['copy','excel','pdf','print'],
+           responsive:true }
+       );
+       });
+
+
+
+
+</script>
+}

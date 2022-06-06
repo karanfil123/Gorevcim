@@ -7,68 +7,85 @@
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <form asp-controller="Products" method="post" asp-action="ProductSave" class="needs-validation" novalidate>
+            <form asp-controller="Products" asp-action="ProductSave" method="post" class="needs-validation" novalidate>
 
-
-                <h4 class="card-title">Textual inputs</h4>
+                <h4 class="card-title">Ürün Kayıt</h4>
 
                 <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label" asp-for="CategoryId"></label>
+                    <label class="col-md-2 col-form-label">Kategoriler</label>
                     <div class="col-md-10">
                         <select itemid="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" placeholder="Kategori Seçiniz" class="form-select">
                         </select>
                         <div class="invalid-feedback">Lütfen kategori alanını boş geçmeyiniz</div>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label asp-for="Name" class="col-md-2 col-form-label"></label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="Name" id="ProductNameSave" placeholder="Ürün adını giriniz">
-                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
 
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label asp-for="Code" class="col-md-2 col-form-label"></label>
+                    <label class="col-md-2 col-form-label">Ürün Adı</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="Code" id="ProductCodeSave" placeholder="Ürün kodu giriniz">
-                        <div class="invalid-feedback">Lütfen ürün kodu alanını boş geçmeyiniz</div>
+                        <input class="form-control" type="text" asp-for="Name" id="ProductNameSave" placeholder="Ürün adını giriniz" required>
+                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+
+
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label asp-for="Barcode" class="col-md-2 col-form-label"></label>
+                    <label class="col-md-2 col-form-label"> Ürün Kodu</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="Barcode" id="ProductbarcodeSave" placeholder="Ürün barcode giriniz">
-                        <div class="invalid-feedback">Lütfen ürün barcode alanını boş geçmeyiniz</div>
+                        <input class="form-control" type="text" asp-for="Code" id="ProductCodeSave" placeholder="Kodu giriniz" required>
+                        <div class="invalid-feedback">Lütfen kod alanını boş geçmeyiniz</div>
+
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label asp-for="SalePrice" class="col-md-2 col-form-label"></label>
+                    <label class="col-md-2 col-form-label"> Barkod</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="number" asp-for="SalePrice" id="ProductpriceSave" placeholder="0,00₺">
-                        <div class="invalid-feedback">Lütfen ürün satış fiyatı alanını boş geçmeyiniz</div>
+                        <input class="form-control" type="text" asp-for="Barcode" id="ProductbarcodeSave" placeholder="Barkod no giriniz" required>
+                        <div class="invalid-feedback">Lütfen barkod alanını boş geçmeyiniz</div>
+
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label asp-for="TechnicalWebUrl" class="col-md-2 col-form-label"></label>
+                    <label class="col-md-2 col-form-label">Satış Fiyatı</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="url" asp-for="TechnicalWebUrl" id="ProductTecnichWebUrlSave" placeholder="Ürün tecncal web url giriniz">
-                        <div class="invalid-feedback">Lütfen ürün tecnical web url alanını boş geçmeyiniz</div>
+                        <input class="form-control" type="text" onkeypress="return isNumberKey(event)" asp-for="SalePrice" id="ProductpriceSave" placeholder="0,00 TL" required>
+
+                        <div class="invalid-feedback">Lütfen fiyat alanını boş geçmeyiniz</div>
+
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label asp-for="ExplanationWebUrl" class="col-md-2 col-form-label"></label>
+                    <label class="col-md-2 col-form-label">Technical Web Url</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="url" asp-for="ExplanationWebUrl" id="ProductTecnichWebUrlSave" placeholder="Ürün açıklama web url giriniz">
-                        <div class="invalid-feedback">Lütfen ürün açıklama web url alanını boş geçmeyiniz</div>
+                        <input class="form-control" type="text" asp-for="TechnicalWebUrl" id="ProductTecnichWebUrlSave" placeholder="Techcnical web url giriniz" required>
+                        <div class="invalid-feedback">Lütfen Technical Web Url alanını boş geçmeyiniz</div>
                     </div>
                 </div>
-                <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Ürünü Ekle</button>
+                <div class="mb-3 row">
+                    <label class="col-md-2 col-form-label">ExplanationWebUrl</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" asp-for="ExplanationWebUrl" id="ProductTecnichWebUrlSave" placeholder="Açıklama web url giriniz" required>
+                        <div class="invalid-feedback">Lütfen Explanation Web Url alanını boş geçmeyiniz</div>
+                    </div>
+                </div>
+                <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Kaydet</button>
             </form>
 
         </div>
     </div>
 </div>
+@section Scripts
+{
+<script type="text/javascript">
+           function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+}
+
 
 
 

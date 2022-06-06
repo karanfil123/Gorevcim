@@ -38,7 +38,6 @@ namespace Gorevcim.Web.Controllers
            var categories=await _categoryService.GetAllAsync();
             ViewBag.categories = new SelectList(categories, "Id", "Name");
             return View();
-
         }
         [HttpPost]
         public async Task<IActionResult> ProductSave(ProductDto productDto)
@@ -47,8 +46,10 @@ namespace Gorevcim.Web.Controllers
             {
                 var product = _mapper.Map<Product>(productDto);
                 await _productService.AddAsync(product);
+                TempData.Add("Başarılı", "Ürün başarıyka eklendi.");
                 return RedirectToAction(nameof(Index));
             }
+            TempData.Add("Hata", "Ürün eklenirken hata oluştu. => Product|ProductSave|53");
             var categories=await _categoryService.GetAllAsync();
             var categoriesDto=_mapper.Map<List<CategoryDto>>(categories.ToList());
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");

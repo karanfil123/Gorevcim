@@ -5,10 +5,10 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | Minible - FBÜ & Dashboard Template</title>
+    <title>Bülent | Karanfil - FBÜ & Dashboard Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="Bülent | Karanfil - FBÜ & Dashboard Panel" name="description" />
+    <meta content="gorevcim" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="~/images/favicon.ico">
     <title>ViewData["Title"]</title>
@@ -16,6 +16,23 @@
     <link href="~/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="~/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- app Css -->
+    <link href="~/css/app.min.css" rel="stylesheet" type="text/css" />
+    <!-- Toastsr Css -->
+    <link href="~/libs/toastr/build/toastr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Datatable Css -->
+    <link href="~/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Jquery js-->
+    <script src="~/libs/jquery/jquery.min.js"></script>
+      <!-- form validations js-->
+    <script src="~/libs/parsleyjs/parsley.min.js"></script>
+    <script src="~/js/pages/form-validation.init.js"></script>
+    
+          
+  
+
     <!-- App Css-->
     <link href="~/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
@@ -23,17 +40,24 @@
 
 
 <body>
-
-    <!-- <body data-layout="horizontal" data-topbar="colored"> -->
-    <!-- Begin page -->
+    @if (TempData["Başarılı"] != null)
+    {
+        <script type="text/javascript">
+            toastr.success('@TempData["Başarılı"]','Başarılı')
+        </script>
+    }
+    else if (TempData["Hata"] != null)
+    {
+        <script type="text/javascript">
+            toastr.error('@TempData["Hata"]','Hata')
+        </script>
+    }
     <div id="layout-wrapper">
 
 
         <header id="page-topbar">
             <div class="navbar-header">
                 <div class="d-flex">
-                  
-
                 </div>
                 <div class="d-flex">
                     <div class="dropdown d-inline-block">
@@ -110,7 +134,7 @@
                                     <a href="javascript: void(0);" class="has-arrow">Kataegoriler</a>
                                     <ul class="sub-menu" aria-expanded="true">
                                         <li><a asp-area="" asp-controller="Category" asp-action="Index">Kategori Listeleme</a></li>
-                                       
+
                                     </ul>
                                 </li>
                                 <li>
@@ -160,13 +184,8 @@
                     <!-- end page title -->
 
                     <main role="main">
-                        <div class="container-fluid">
-                            @RenderBody()
-                        </div>
-
+                        <div class="container-fluid">@RenderBody()</div>
                     </main>
-
-
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
@@ -194,8 +213,9 @@
 
     <div class="rightbar-overlay"></div>
 
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
     <!-- JAVASCRIPT -->
-    <script src="~/libs/jquery/jquery.min.js"></script>
     <script src="~/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/libs/metismenu/metisMenu.min.js"></script>
     <script src="~/libs/simplebar/simplebar.min.js"></script>
@@ -211,6 +231,26 @@
     <!-- App js -->
     <script src="~/js/app.js"></script>
 
+    <!-- datatables -->
+    <script src="~/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- datatable  buttons-->
+    <script src="~/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/libs/jszip/jszip.min.js"></script>
+    <script src="~/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/libs/pdfmake/build/vfs_fonts.js"></script>
+    <script src="~/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- datatable responsive -->
+    <script src="~/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <!-- datatable init js -->
+    <script src="~/js/pages/datatables.init.js"></script>
+
+    @await RenderSectionAsync("Scripts",required:false)
 </body>
 
 </html>
