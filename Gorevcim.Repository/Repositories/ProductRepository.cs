@@ -13,11 +13,16 @@ namespace Gorevcim.Repository.Repositories
     {
         public ProductRepository(AppDbContext.AppDbContext context) : base(context)
         {
-        }       
-        
-        public async Task<List<Product>> GetProductCategory()
+        }
+
+        public async Task<List<Product>> GetAllWebProductsCategory()
         {
-            return await _context.Products.Include(x => x.Category).ToListAsync();
+            return await _context.Products.Include(p => p.Category).ToListAsync();
+        }
+
+        public async Task<Product> GetWebProductByIdCategory(int productId)
+        {
+           return await _context.Products.Include(x=>x.Category).Where(x=>x.Id==productId).SingleOrDefaultAsync();
         }
     }
 }

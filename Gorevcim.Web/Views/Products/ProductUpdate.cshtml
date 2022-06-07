@@ -1,13 +1,15 @@
-﻿@{
-    ViewData["Title"] = "ProductSave";
+﻿
+@{
+    ViewData["Title"] = "ProductUpdate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @model ProductDto
 
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <form asp-controller="Products" asp-action="ProductSave" method="post" class="needs-validation" novalidate>
+            <form asp-controller="Products" asp-action="ProductUpdate" method="post" class="needs-validation" novalidate>
 
                 <h4 class="card-title">Ürün Kayıt</h4>
 
@@ -46,7 +48,7 @@
                 <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Satış Fiyatı</label>
                     <div class="col-md-10">
-                       <input id="input-currency" asp-for="SalePrice" class="form-control input-mask text-start" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'digits': 2, 'digitsOptional': false,  'placeholder': '0'" im-insert="true" style="text-align: right;">
+                       <input id="mask" asp-for="SalePrice" class="form-control input-mask text-start" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'digits': 2, 'digitsOptional': false,  'placeholder': '0'" im-insert="true" style="text-align: right;">
                         <div class="invalid-feedback">Lütfen fiyat alanını boş geçmeyiniz</div>
 
                     </div>
@@ -74,17 +76,8 @@
 @section Scripts
 {
 <script type="text/javascript">
-           function isNumberKey(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
+    
 </script>
 }
-
-
-
-
 
 

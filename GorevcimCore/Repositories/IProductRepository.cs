@@ -8,7 +8,8 @@ namespace Gorevcim.Core.Repositories
 {
     public interface IProductRepository:IGenericRepository<Product>
     {
-        Task<List<Product>> GetProductCategory();
+        Task<Product> GetWebProductByIdCategory(int productId);
+        Task<List<Product>> GetAllWebProductsCategory();
 
     }
 }

@@ -21,14 +21,25 @@ namespace Gorevcim.Services.Services
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
-        }
+        }      
 
         public async Task<CustomResponseDto<CategoryProductDto>> GetCategoryIdProductAsync(int categoryId)
         {
-            var category = await _categoryRepository.GetCategoryIdProductAsync(categoryId);
+            var category = await _categoryRepository.GetWebCategoryByIdProductsAsync(categoryId);
             var categoryDto=_mapper.Map<CategoryProductDto>(category);
             return CustomResponseDto<CategoryProductDto>.Success(200, categoryDto);
 
+        }
+        public async Task<List<CategoryProductDto>> GetAllWebCategoriesProductsAsync()
+        {
+            var category = await _categoryRepository.GetWebCategoryProductsAsync();
+            var categoryDto = _mapper.Map<List<CategoryProductDto>>(category);
+            return categoryDto.ToList();
+        }
+
+        Task<CategoryProductDto> ICategoryService.GetWebCategoryByIdProductsAsync(int categoryId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

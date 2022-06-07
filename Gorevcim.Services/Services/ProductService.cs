@@ -18,19 +18,19 @@ namespace Gorevcim.Services.Services
             _mapper = mapper;
         }
 
+        public async Task<List<ProductCategoryDto>> GetAllWebProductCategories()
+        {
+           var products = await _producRepository.GetAllWebProductsCategory();
+            var productsDto=_mapper.Map<List<ProductCategoryDto>>(products);
+            return productsDto.ToList();
+        }
+
         public async Task<CustomResponseDto<List<ProductCategoryDto>>> GetProductsCategory()
         {
-            var products = await _producRepository.GetProductCategory();
+            var products = await _producRepository.GetAllWebProductsCategory();
             var productDtos = _mapper.Map<List<ProductCategoryDto>>(products);
             return CustomResponseDto<List<ProductCategoryDto>>.Success(200, productDtos);
         }
-
-
-        public async Task<List<ProductCategoryDto>> GetWebProductCategories()
-        {
-            var products = await _producRepository.GetProductCategory();
-            var productDtos = _mapper.Map<List<ProductCategoryDto>>(products);
-            return productDtos;
-        }
+      
     }
 }

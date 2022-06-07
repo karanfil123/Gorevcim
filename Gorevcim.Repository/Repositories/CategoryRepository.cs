@@ -20,5 +20,15 @@ namespace Gorevcim.Repository.Repositories
         {
             return await _context.Categories.Include(x => x.Products).Where(x => x.Id == categoryId).SingleOrDefaultAsync();
         }
+
+        public async Task<Category> GetWebCategoryByIdProductsAsync(int categoryId)
+        {
+            return await _context.Categories.Include(x => x.Products).Where(x => x.Id == categoryId).SingleOrDefaultAsync();
+        }
+
+        public async Task<List<Category>> GetWebCategoryProductsAsync()
+        {
+            return await _context.Categories.Include(x=>x.Products).ToListAsync();
+        }
     }
 }

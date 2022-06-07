@@ -10,5 +10,8 @@ namespace Gorevcim.Core.Services
     public interface ICategoryService:IGenericService<Category>
     {
         public Task<CustomResponseDto<CategoryProductDto>> GetCategoryIdProductAsync(int categoryId);
+        Task<List<CategoryProductDto>> GetAllWebCategoriesProductsAsync();
+        Task<CategoryProductDto> GetWebCategoryByIdProductsAsync(int categoryId);
+
     }
 }

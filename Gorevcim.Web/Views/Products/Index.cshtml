@@ -48,10 +48,10 @@
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="/Products/ProductUpdate/@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                            <a asp-area="" asp-controller="Products" asp-action="ProductUpdate" asp-route-id="@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="/Products/ProductDelete/@item.Id" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                            <a asp-area="" asp-controller="Products" asp-action="ProductDelete" asp-route-id="@item.Id" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
                                         </li>
                                         <li class="list-inline-item dropdown">
                                             <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">

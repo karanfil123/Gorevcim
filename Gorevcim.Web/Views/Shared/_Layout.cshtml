@@ -12,6 +12,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="~/images/favicon.ico">
     <title>ViewData["Title"]</title>
+
     <!-- Bootstrap Css -->
     <link href="~/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -26,10 +27,15 @@
     <link href="~/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <!-- Jquery js-->
     <script src="~/libs/jquery/jquery.min.js"></script>
+    <script src="~/libs/toastr/build/toastr.min.js"></script>
       <!-- form validations js-->
     <script src="~/libs/parsleyjs/parsley.min.js"></script>
     <script src="~/js/pages/form-validation.init.js"></script>
-    
+     <!-- form mask -->
+        <script src="~/libs/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+
+        <!-- form mask init -->
+        <script src="~/js/pages/form-mask.init.js"></script>
           
   
 
@@ -40,16 +46,16 @@
 
 
 <body>
-    @if (TempData["Başarılı"] != null)
+    @if (TempData["Success"] != null)
     {
         <script type="text/javascript">
-            toastr.success('@TempData["Başarılı"]','Başarılı')
+            toastr.success('@TempData["Success"]','Başarılı')
         </script>
     }
-    else if (TempData["Hata"] != null)
+    else if (TempData["Error"] != null)
     {
         <script type="text/javascript">
-            toastr.error('@TempData["Hata"]','Hata')
+            toastr.error('@TempData["Error"]','Hata')
         </script>
     }
     <div id="layout-wrapper">
@@ -249,6 +255,7 @@
     <script src="~/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
     <!-- datatable init js -->
     <script src="~/js/pages/datatables.init.js"></script>
+    
 
     @await RenderSectionAsync("Scripts",required:false)
 </body>
