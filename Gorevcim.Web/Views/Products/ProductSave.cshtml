@@ -14,7 +14,7 @@
                 <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Kategoriler</label>
                     <div class="col-md-10">
-                        <select id="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" placeholder="Kategori Seçiniz" class="form-select">
+                           <select id="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control select2">
                         </select>
                         <div class="invalid-feedback">Lütfen kategori alanını boş geçmeyiniz</div>
 
@@ -46,7 +46,7 @@
                 <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Satış Fiyatı</label>
                     <div class="col-md-10">
-                       <input id="input-currency" asp-for="SalePrice" class="form-control input-mask text-start" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'digits': 2, 'digitsOptional': false,  'placeholder': '0'" im-insert="true" style="text-align: right;">
+                       <input id="input-currency" asp-for="SalePrice" class="form-control" onkeypress="return isNumberKey(event) " >
                         <div class="invalid-feedback">Lütfen fiyat alanını boş geçmeyiniz</div>
 
                     </div>
@@ -71,6 +71,7 @@
         </div>
     </div>
 </div>
+      
 @section Scripts
 {
 <script type="text/javascript">
@@ -82,6 +83,7 @@
     }
 </script>
 }
+
 
 
 

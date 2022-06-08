@@ -1,4 +1,5 @@
 ﻿using Gorevcim.Core;
+using Gorevcim.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Gorevcim.Repository.AppDbContext
         public DbSet<ProductsWeightUnit> ProductsWeightUnits { get; set; }
         public DbSet<ProductVatUnit> ProductVatUnits { get; set; }
         public DbSet<ProductProject> ProductProjects { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

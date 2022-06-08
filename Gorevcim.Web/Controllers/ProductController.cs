@@ -11,6 +11,7 @@ namespace Gorevcim.Web.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
+        private char term;
 
         public ProductsController(IProductService productService, ICategoryService categoryService, IMapper mapper)
         {
@@ -30,13 +31,22 @@ namespace Gorevcim.Web.Controllers
         {
             var products = await _productService.GetByIdAsync(id);
             await _productService.RemoveAsync(products);
+            TempData.Add("Success", "Ürün silindi.");
             return RedirectToAction("Index", "Products");
         }       
 
         public async Task<IActionResult> ProductSave()
         {
-           var categories=await _categoryService.GetAllAsync();
-            ViewBag.categories = new SelectList(categories, "Id", "Name");
+            var categoriess = await _categoryService.GetAllAsync();
+            var data = categoriess.Where(a => a.Name.Contains(term, StringComparison.OrdinalIgnoreCase)
+            || a.Name.Contains(term, StringComparison.OrdinalIgnoreCase)
+            || a.Name.Contains(term, StringComparison.OrdinalIgnoreCase)).ToList().AsReadOnly();
+
+            var categories=await _categoryService.GetAllAsync();
+            ViewBag.categories = new SelectList(categoriess, "Id", "Name");
+
+
+
             return View();
         }
         [HttpPost]
