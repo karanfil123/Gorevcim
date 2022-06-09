@@ -35,6 +35,11 @@ namespace Gorevcim.Repository.Repositories
             return await _dbSet.AnyAsync(expression);
         }
 
+        public async Task<int> CountAsync(Expression<Func<T, bool>> expression=null)
+        {
+            return await _dbSet.CountAsync(expression);
+        }
+
         public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking().AsQueryable();

@@ -31,6 +31,20 @@ namespace Gorevcim.Services.Services
             var productDtos = _mapper.Map<List<ProductCategoryDto>>(products);
             return CustomResponseDto<List<ProductCategoryDto>>.Success(200, productDtos);
         }
-      
+
+        public async Task<int> TotalProductCount()
+        {
+            return await _producRepository.CountAsync();
+        }
+
+        public async Task<int> WebActiveProductCount()
+        {
+            return await _producRepository.CountAsync(x => x.IsActive);
+        }
+
+        public async Task<int> WebNonActiveProductCount()
+        {
+           return await _producRepository.CountAsync(x=>!x.IsActive);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Gorevcim.Web.Models;
+﻿using Gorevcim.Core.Services;
+using Gorevcim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +8,19 @@ namespace Gorevcim.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IProductService productService)
         {
             _logger = logger;
+            _productService = productService;
         }
 
         public IActionResult Index()
         {
+            ViewBag.totalProductCount = _productService.TotalProductCount().ToString();
+            ViewBag.activeProductCount = _productService.WebActiveProductCount().ToString();
+            ViewBag.nonActiveProductCount = _productService.WebNonActiveProductCount().ToString();
             return View();
         }
 
