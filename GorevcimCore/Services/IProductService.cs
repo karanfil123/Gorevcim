@@ -11,6 +11,7 @@ namespace Gorevcim.Core.Services
     {
         Task<CustomResponseDto<List<ProductCategoryDto>>> GetProductsCategory();
         Task<List<ProductCategoryDto>> GetAllWebProductCategories();
+        Task<List<ProductCategoryDto>> GetAllWebProductsCategoryPASSIVE();
         Task<int> TotalProductCount();
         Task<int> WebActiveProductCount();
         Task<int> WebNonActiveProductCount();

@@ -13,7 +13,7 @@ namespace Gorevcim.Core
         public int CreateUserId  { get; set; }
         public DateTime UpdateDate  { get; set; }
         public int UpdateUserId  { get; set; }
-        public bool IsActive  { get; set; }
+        public bool IsActive { get; set; } 
         public DateTime IsActiveDate  { get; set; }
         public int IsActiveDateUserId  { get; set; }
         public DateTime IsActiveDateUpdate  { get; set; }

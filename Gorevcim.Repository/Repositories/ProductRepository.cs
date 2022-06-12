@@ -17,7 +17,11 @@ namespace Gorevcim.Repository.Repositories
 
         public async Task<List<Product>> GetAllWebProductsCategory()
         {
-            return await _context.Products.Include(p => p.Category).ToListAsync();
+            return await _context.Products.Include(p => p.Category).Where(x=>x.IsActive).ToListAsync();
+        }     
+        public async Task<List<Product>> GetAllWebProductsCategoryPASSIVE()
+        {
+            return await _context.Products.Include(p => p.Category).Where(x => !x.IsActive).ToListAsync();
         }
 
         public async Task<Product> GetWebProductByIdCategory(int productId)

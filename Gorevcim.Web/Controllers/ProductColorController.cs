@@ -29,7 +29,7 @@ namespace Gorevcim.Web.Controllers
             await _productColorService.RemoveAsync(color);
             return RedirectToAction("Index", "ProductColor");
         }
-        public async Task<IActionResult> ColorSave()
+        public IActionResult ColorSave()
         {
             return View();
         }

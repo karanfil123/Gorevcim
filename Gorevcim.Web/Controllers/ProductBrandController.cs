@@ -29,7 +29,7 @@ namespace Gorevcim.Web.Controllers
             await _productBrandService.RemoveAsync(category);
             return RedirectToAction("Index", "ProductBrand");
         }
-        public async Task<IActionResult> BrandSave()
+        public IActionResult BrandSave()
         {
             return View();
         }

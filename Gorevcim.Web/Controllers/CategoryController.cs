@@ -29,7 +29,7 @@ namespace Gorevcim.Web.Controllers
             await _categoryService.RemoveAsync(category);
             return RedirectToAction("Index", "Category");
         }
-        public async Task<IActionResult> CategorySave()
+        public IActionResult CategorySave()
         {
             return View();
         }

@@ -5,13 +5,12 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Bülent | Karanfil - FBÜ & Dashboard Panel</title>
+    <title>@ViewBag.Title - BK & Dashboard Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Bülent | Karanfil - FBÜ & Dashboard Panel" name="description" />
     <meta content="gorevcim" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="~/images/favicon.ico">
-    <title>ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/images/favicon.ico">   
     <!-- select2 css -->
     <link href="~/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <!-- select2 js -->
@@ -33,10 +32,6 @@
     <!-- form validations js-->
     <script src="~/libs/parsleyjs/parsley.min.js"></script>
     <script src="~/js/pages/form-validation.init.js"></script>
-
-
-
-
     <!-- App Css-->
     <link href="~/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
@@ -144,7 +139,8 @@
                                 <li>
                                     <a href="javascript: void(0);" class="has-arrow">Ürünler</a>
                                     <ul class="sub-menu" aria-expanded="true">
-                                        <li><a asp-area="" asp-controller="Products" asp-action="Index">Ürün Listeleme</a></li>
+                                        <li><a asp-area="" asp-controller="Products" asp-action="Index">Ürün Listesi</a></li>
+                                        <li><a asp-area="" asp-controller="Products" asp-action="PassiveProducts">İstenmeyen Ürünler</a></li>
                                         <li><a asp-area="" asp-controller="ProductBrand" asp-action="Index">Ürün Markaları</a></li>
                                         <li><a asp-area="" asp-controller="ProductColor" asp-action="Index">Ürün Renkleri</a></li>
                                         <li><a asp-area="" asp-controller="Products" asp-action="ProductSave">Ürün Ekleme</a></li>
@@ -173,16 +169,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0">Dashboard</h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Minible</a></li>
-                                        <li class="breadcrumb-item active">Dashboard</li>
-                                    </ol>
-                                </div>
-
-                            </div>
+                                <h4 class="mb-0">@ViewBag.Title</h4>  
+                            </div>                             
                         </div>
                     </div>
                     <!-- end page title -->
@@ -263,6 +251,8 @@
     <script src="~/libs/tinymce/tinymce.min.js"></script>
     <!-- init js -->
     <script src="~/js/pages/form-editor.init.js"></script>
+    <!-- Varying Modal Content js -->
+        <script src="~/js/pages/modal.init.js"></script>
 
     <!-- ckeditor end-->
     @await RenderSectionAsync("Scripts",required:false)

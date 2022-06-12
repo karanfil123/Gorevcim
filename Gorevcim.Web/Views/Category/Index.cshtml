@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewBag.Title = "Kategoriler";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,111 +12,108 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <a asp-area="" asp-controller="Category" asp-action="CategorySave"  class="btn btn-success waves-effect waves-light"><i class="mdi mdi-plus me-2"></i>Kategori Ekle</a>
+                            <a asp-area="" asp-controller="Category" asp-action="CategorySave" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-plus me-2"></i>Kategori Ekle</a>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-inline float-md-end mb-3">
-                            <div class="search-box ms-2">
-                                <div class="position-relative">
-                                    <input type="text" class="form-control rounded bg-light border-0" placeholder="Ara...">
-                                    <i class="mdi mdi-magnify search-icon"></i>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
 
                 </div>
                 <!-- end row -->
                 <div class="table-responsive mb-4">
-                    <table class="table table-centered table-nowrap mb-0">
+                    <table id="ProductsCategoryTable" class="table table-centered table-nowrap mb-0">
                         <thead>
                             <tr>
-                                <th scope="col" style="width: 50px;">
-                                    <div class="form-check font-size-16">
-                                        <input type="checkbox" class="form-check-input" id="contacusercheck">
-                                        <label class="form-check-label" for="contacusercheck"></label>
-                                    </div>
-                                </th>
                                 <th scope="col">Id</th>
                                 <th scope="col">Name</th>
-                                
-                                <th scope="col" style="width: 200px;">Processing</th>
+
+                                <th scope="col" style="width:200px;">Processing</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th scope="row">
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="contacusercheck1">
-                                            <label class="form-check-label" for="contacusercheck1"></label>
-                                        </div>
-                                    </th>
-                                    <td>   @item.Id </td>
-                                    <td>@item.Name</td>                                   
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
                                     <td>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
-                                                <a href="/Category/CategoryUpdate/@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                <a class="px-2 text-primary"><i class="uil uil-eye font-size-18"></i> Ürünleri Gör</a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a href="/Category/CategoryDelete/@item.Id" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                <a asp-controller="Category" asp-action="CategoryUpdate" asp-route-id="@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
                                             </li>
-                                            <li class="list-inline-item dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                    <i class="uil uil-ellipsis-v"></i>
-                                                </a>
+                                            <li class="list-inline-item">
+                                                <a data-bs-toggle="modal" title="Kaldır" data-bs-target="#@item.Id" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
 
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Kategori Detay 1</a>
-                                                    <a class="dropdown-item" href="#">Kategori Detay 2</a>
-                                                    <a class="dropdown-item" href="#">Kategori Detay 3</a>
+                                                <!-- staticBackdrop Modal example -->
+                                                <div class="modal fade" id="@item.Id" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-top-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-center" id="staticBackdropLabel"><i class="dripicons-warning"></i>UYARI</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="modal-body">
+                                                                <p><b>@item.Name</b> adlı ürünü silmek istediğinizden emin misiniz? </p>
+                                                                <p>Silmek yerine pasif yapmak istiyormusunuz? </p>
+                                                                <a asp-area="" asp-controller="Category" asp-action="CategoryPassive" asp-route-id="@item.Id" class="btn btn-warning">Pasif Yap</a>
+                                                                <a asp-controller="Category" asp-action="CategoryDelete" asp-route-id="@item.Id" class="btn btn-danger">Silmek İstiyorum</a>
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+
                             }
-
-
                         </tbody>
                     </table>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-sm-6">
-                        <div>
-                            <p class="mb-sm-0">Showing 1 to 10 of 12 entries</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="float-sm-end">
-                            <ul class="pagination mb-sm-0">
-                                <li class="page-item disabled">
-                                    <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#ProductsCategoryTable').DataTable(
+                {
+                    language: {
+
+                        info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                        infoEmpty: "Kayıt yok",
+                        loadingRecords: "Yükleniyor...",
+                        zeroRecords: "Eşleşen kayıt bulunamadı",
+                        search: "Arama:",
+                        infoFiltered: "(toplam _MAX_ kayıt içerisinden bulunan)",
+
+                        buttons: {
+                            copyTitle: "Panoya kopyalandı.",
+                            copySuccess: "Panoya %d satır kopyalandı",
+                            copy: "Kopyala",
+                            print: "Yazdır",
+                        },
+                        paginate: {
+                            first: "İlk",
+                            last: "Son",
+                            next: "Sonraki",
+                            previous: "Önceki"
+                        },
+
+                    },
+                    dom: 'Bfrtip',
+                    buttons: ['copy', 'excel', 'pdf', 'print'],
+                    responsive: true
+                }
+            );
+        });
+    </script>
+}
+
 

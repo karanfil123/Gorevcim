@@ -14,6 +14,7 @@ namespace Gorevcim.Core.Dtos
         public string Explanation { get; set; }
         public string Barcode { get; set; }
         public decimal SalePrice { get; set; }
+        public bool IsActive { get; set; }=true;
         public string TechnicalWebUrl { get; set; }
         public string ExplanationWebUrl { get; set; }
     }

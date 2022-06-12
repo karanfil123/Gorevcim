@@ -10,6 +10,7 @@ namespace Gorevcim.Core.Repositories
     {
         Task<Product> GetWebProductByIdCategory(int productId);
         Task<List<Product>> GetAllWebProductsCategory();
+        Task<List<Product>> GetAllWebProductsCategoryPASSIVE();
        
 
     }

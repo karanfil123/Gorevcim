@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewData["Title"] = "ProductUpdate";
+﻿@{
+    ViewBag.Title = "Ürün Güncelle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +15,7 @@
                 <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Kategoriler</label>
                     <div class="col-md-10">
-                        <select id="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" placeholder="Kategori Seçiniz" class="form-select">
+                        <select id="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control select2">
                         </select>
                         <div class="invalid-feedback">Lütfen kategori alanını boş geçmeyiniz</div>
 
@@ -27,6 +26,13 @@
                     <div class="col-md-10">
                         <input class="form-control" type="text" asp-for="Name" id="ProductNameSave" placeholder="Ürün adını giriniz" required>
                         <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+                    </div>
+                </div>
+                 <div class="mb-3 row">
+                    <label class="col-md-2 col-form-label">Ürün Açıklaması</label>
+                    <div class="col-md-10">
+                        <textarea id="elm1" name="area" class="form-control" type="text" asp-for="Explanation" placeholder="Ürün adını giriniz" required></textarea>
+                        <div class="invalid-feedback">Lütfen ürün açıklaması alanını boş geçmeyiniz</div>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -48,7 +54,7 @@
                 <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Satış Fiyatı</label>
                     <div class="col-md-10">
-                       <input id="input-currency" asp-for="SalePrice" class="form-control" onkeypress="return isNumberKey(event) " >
+                        <input id="input-currency" asp-for="SalePrice" class="form-control" onkeypress="return isNumberKey(event) ">
                         <div class="invalid-feedback">Lütfen fiyat alanını boş geçmeyiniz</div>
 
                     </div>
@@ -74,15 +80,20 @@
     </div>
 </div>
 @section Scripts
-{
-<script type="text/javascript">
-         function isNumberKey(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
-</script>
+    {
+    <script type="text/javascript">
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+           ClassicEditor
+            .create(document.querySelector('#classic-editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 }
 
 
