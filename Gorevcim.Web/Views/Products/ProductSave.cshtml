@@ -4,82 +4,154 @@
 }
 @model ProductDto
 
-<div class="col-12">
-    <div class="card">
-        <div class="card-body">
-            <form asp-controller="Products" asp-action="ProductSave" method="post" class="needs-validation" novalidate>
+<div id="addproduct-accordion" class="custom-accordion">
+    <form asp-controller="Products" asp-action="ProductSave" method="post" class="needs-validation" novalidate>
+        <div class="card">
+            <a href="#productAdd" class="text-dark" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="true" aria-controls="addproduct-billinginfo-collapse">
+                <div class="p-4">
 
-                <h4 class="card-title">Ürün Kayıt</h4>
-
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">Kategoriler</label>
-                    <div class="col-md-10">
-                        <select id="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control select2">
-                        </select>
-                        <div class="invalid-feedback">Lütfen kategori alanını boş geçmeyiniz</div>
-
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">Ürün Adı</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="Name" id="ProductNameSave" placeholder="Ürün adını giriniz" required>
-                        <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">Ürün Açıklaması</label>
-                    <div class="col-md-10">
-                        <textarea id="elm1" name="area" class="form-control" type="text" asp-for="Explanation" placeholder="Ürün adını giriniz" required></textarea>
-                        <div class="invalid-feedback">Lütfen ürün açıklaması alanını boş geçmeyiniz</div>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label"> Ürün Kodu</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="Code" id="ProductCodeSave" placeholder="Kodu giriniz" required>
-                        <div class="invalid-feedback">Lütfen kod alanını boş geçmeyiniz</div>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="avatar-xs">
+                                <div class="avatar-title rounded-circle bg-soft-primary text-primary">
+                                    01
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Ürün Ekle</h5>
+                            <p class="text-muted text-truncate mb-0">Ürün bilgileri giriniz </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
+                        </div>
 
                     </div>
+
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label"> Barkod</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="Barcode" id="ProductbarcodeSave" placeholder="Barkod no giriniz" required>
-                        <div class="invalid-feedback">Lütfen barkod alanını boş geçmeyiniz</div>
+            </a>
+
+            <div id="productAdd" class="collapse show" data-bs-parent="#addproduct-accordion">
+                <div class="p-4 border-top">
+
+
+                    <h4 class="card-title">Ürün Kayıt</h4>
+
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Kategoriler</label>
+                        <div class="col-md-10">
+                            <select id="ProductscategoryIdSave" asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control select2">
+                            </select>
+                            <div class="invalid-feedback">Lütfen kategori alanını boş geçmeyiniz</div>
+
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Ürün Adı</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" asp-for="Name" id="ProductNameSave" placeholder="Ürün adını giriniz" required>
+                            <div class="invalid-feedback">Lütfen ürün adı alanını boş geçmeyiniz</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Ürün Açıklaması</label>
+                        <div class="col-md-10">
+                            <textarea id="elm1" class="form-control" type="text" asp-for="Explanation" placeholder="Ürün adını giriniz" required></textarea>
+                            <div class="invalid-feedback">Lütfen ürün açıklaması alanını boş geçmeyiniz</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label"> Ürün Kodu</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" asp-for="Code" id="ProductCodeSave" placeholder="Kodu giriniz" required>
+                            <div class="invalid-feedback">Lütfen kod alanını boş geçmeyiniz</div>
+
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label"> Barkod</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" asp-for="Barcode" id="ProductbarcodeSave" placeholder="Barkod no giriniz" required>
+                            <div class="invalid-feedback">Lütfen barkod alanını boş geçmeyiniz</div>
+
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Satış Fiyatı</label>
+                        <div class="col-md-10">
+                            <input id="input-currency" asp-for="SalePrice" class="form-control" onkeypress="return isNumberKey(event) ">
+                            <div class="invalid-feedback">Lütfen fiyat alanını boş geçmeyiniz</div>
+
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Technical Web Url</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" asp-for="TechnicalWebUrl" id="ProductTecnichWebUrlSave" placeholder="Techcnical web url giriniz" required>
+                            <div class="invalid-feedback">Lütfen Technical Web Url alanını boş geçmeyiniz</div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">ExplanationWebUrl</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" asp-for="ExplanationWebUrl" id="ProductTecnichWebUrlSave" placeholder="Açıklama web url giriniz" required>
+                            <div class="invalid-feedback">Lütfen Explanation Web Url alanını boş geçmeyiniz</div>
+                        </div>
+                    </div>
+                    <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Kaydet</button>
+
+
+                </div>
+            </div>
+
+            <a href="#productFeature" class="text-dark collapsed" aria-haspopup="true" data-bs-toggle="collapse" aria-expanded="true" aria-controls="addproduct-billinginfo-collapse">
+                <div class="p-4">
+
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="avatar-xs">
+                                <div class="avatar-title rounded-circle bg-soft-primary text-primary">
+                                    02
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 overflow-hidden">
+                            <h5 class="font-size-16 mb-1">Ürün Özellikleri</h5>
+                            <p class="text-muted text-truncate mb-0">Ürün özellikleri giriniz</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
+                        </div>
 
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">Satış Fiyatı</label>
-                    <div class="col-md-10">
-                        <input id="input-currency" asp-for="SalePrice" class="form-control" onkeypress="return isNumberKey(event) ">
-                        <div class="invalid-feedback">Lütfen fiyat alanını boş geçmeyiniz</div>
 
+                </div>
+            </a>
+            <div id="productFeature" class="collapse show" data-bs-parent="#addproduct-accordion">
+                <div class="p-4  border-top">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>abc</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="col-4">
+                            <label>abc</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="col-4">
+                            <label>abc</label>
+                            <input type="text" class="form-control" />
+                        </div>
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">Technical Web Url</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="TechnicalWebUrl" id="ProductTecnichWebUrlSave" placeholder="Techcnical web url giriniz" required>
-                        <div class="invalid-feedback">Lütfen Technical Web Url alanını boş geçmeyiniz</div>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">ExplanationWebUrl</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" asp-for="ExplanationWebUrl" id="ProductTecnichWebUrlSave" placeholder="Açıklama web url giriniz" required>
-                        <div class="invalid-feedback">Lütfen Explanation Web Url alanını boş geçmeyiniz</div>
-                    </div>
-                </div>
-                <button id="btnSave" type="submit" class="btn btn-primary waves-effect waves-light w-md">Kaydet</button>
-            </form>
-
+            </div>
         </div>
-    </div>
+    </form>
 </div>
+
+
 
 @section Scripts
     {

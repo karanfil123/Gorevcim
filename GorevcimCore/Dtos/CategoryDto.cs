@@ -9,5 +9,7 @@ namespace Gorevcim.Core.Dtos
     public class CategoryDto:BaseDto
     {
         public string Name { get; set; }
+        public bool IsActive { get; set; } = true;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

@@ -1,38 +1,40 @@
 ﻿using Gorevcim.Core.Services;
 using Gorevcim.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Dynamic;
 
 namespace Gorevcim.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryServive;
 
-        public HomeController(ILogger<HomeController> logger,IProductService productService)
+        public HomeController(IProductService productService, ICategoryService categoryServive)
         {
-            _logger = logger;
             _productService = productService;
+            _categoryServive = categoryServive;
         }
-
-        public IActionResult Index()
+        //[Authorize]
+        public async Task<IActionResult> Index()
         {
-            ViewBag.totalProductCount = _productService.TotalProductCount().ToString();
-            ViewBag.activeProductCount = _productService.WebActiveProductCount().ToString();
-            ViewBag.nonActiveProductCount = _productService.WebNonActiveProductCount().ToString();
+            dynamic myModel = new ExpandoObject();
+            var products = await _productService.GetAllWebProductCategories();
+            var categories = await _categoryServive.GetAllWebCategoriesProductsAsync();
+            myModel._product = products;
+            myModel._category = categories;
+            myModel._productCount = products.Count();
+            myModel._activeProductCount = products.Where(x => x.IsActive == true).Count();
+            myModel._passiveProductCount = products.Where(x => x.IsActive == false).Count();
+            myModel._categoryCount = categories.Where(x => x.IsActive == false).Count();
+            return View(myModel);
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

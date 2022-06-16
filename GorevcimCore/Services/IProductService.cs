@@ -10,10 +10,6 @@ namespace Gorevcim.Core.Services
     public interface IProductService:IGenericService<Product>
     {
         Task<CustomResponseDto<List<ProductCategoryDto>>> GetProductsCategory();
-        Task<List<ProductCategoryDto>> GetAllWebProductCategories();
-        Task<List<ProductCategoryDto>> GetAllWebProductsCategoryPASSIVE();
-        Task<int> TotalProductCount();
-        Task<int> WebActiveProductCount();
-        Task<int> WebNonActiveProductCount();
+        Task<List<ProductCategoryDto>> GetAllWebProductCategories();     
     }
 }

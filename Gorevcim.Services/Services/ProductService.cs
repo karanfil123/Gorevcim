@@ -23,35 +23,12 @@ namespace Gorevcim.Services.Services
            var products = await _producRepository.GetAllWebProductsCategory();
             var productsDto=_mapper.Map<List<ProductCategoryDto>>(products);
             return productsDto.ToList();
-        }      
-
-        public async Task<List<ProductCategoryDto>> GetAllWebProductsCategoryPASSIVE()
-        {
-            var products = await _producRepository.GetAllWebProductsCategoryPASSIVE();
-            var productsDto = _mapper.Map<List<ProductCategoryDto>>(products);
-            return productsDto.ToList();
-        }
-
+        }   
         public async Task<CustomResponseDto<List<ProductCategoryDto>>> GetProductsCategory()
         {
             var products = await _producRepository.GetAllWebProductsCategory();
             var productDtos = _mapper.Map<List<ProductCategoryDto>>(products);
             return CustomResponseDto<List<ProductCategoryDto>>.Success(200, productDtos);
-        }
-
-        public async Task<int> TotalProductCount()
-        {
-            return await _producRepository.CountAsync();
-        }
-
-        public async Task<int> WebActiveProductCount()
-        {
-            return await _producRepository.CountAsync(x => x.IsActive);
-        }
-
-        public async Task<int> WebNonActiveProductCount()
-        {
-           return await _producRepository.CountAsync(x=>!x.IsActive);
         }
     }
 }

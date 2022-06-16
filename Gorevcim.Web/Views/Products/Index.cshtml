@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<ProductCategoryDto>
+@model dynamic
 
 <div class="row">
     <div class="col-lg-12">
@@ -16,34 +16,32 @@
                         </div>
                     </div>
                 </div>
-                <!-- end row -->
-
                 <table class="table table-centered" id="ProductsCategoryTable">
-
                     <thead>
                         <tr>
-
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Category</th>
                             <th scope="col">Code</th>
                             <th scope="col">Barcode</th>
                             <th scope="col">Sale Price</th>
+                            <th scope="col">Created Date</th>
                             <th scope="col">TechnicalWebUrl</th>
                             <th scope="col">ExplanationWebUrl</th>
                             <th scope="col" style="width: 200px;">Processing</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model._product)
                         {
                             <tr>
-                                <td>   @item.Id </td>
+                                <td>@item.Id </td>
                                 <td>@item.Name</td>
                                 <td>@item.Category.Name</td>
                                 <td>@item.Code</td>
                                 <td>@item.Barcode</td>
-                                <td>@item.SalePrice</td>
+                                <td>₺@item.SalePrice</td>                               
+                                <td>@item.CreatedDate</td>
                                 <td>@item.TechnicalWebUrl</td>
                                 <td>@item.ExplanationWebUrl</td>
                                 <td>
@@ -52,15 +50,15 @@
                                             <a title="Güncelle" asp-area="" asp-controller="Products" asp-action="ProductUpdate" asp-route-id="@item.Id" class="px-2 text-primary"><i class="uil uil-pen font-size-22"></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a data-bs-toggle="modal" title="Kaldır" data-bs-target="#staticBackdrop" class="px-2 text-danger "><i class="uil uil-trash-alt font-size-22"></i></a>
-                                        </li>                                        
+                                            <a data-bs-toggle="modal" title="Kaldır" data-bs-target="#modelRemove@(item.Id)" class="px-2 text-danger "><i class="uil uil-trash-alt font-size-22"></i></a>
+                                        </li>
                                     </ul>
                                 </td>
                             </tr>
 
 
                             <!-- staticBackdrop Modal example -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="modelRemove@(item.Id)" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -72,7 +70,7 @@
                                         <div class="modal-body">
                                             <p><b>@item.Name</b> adlı ürünü silmek istediğinizden emin misiniz? </p>
                                             <p>Silmek yerine pasif yapmak istiyormusunuz? </p>
-                                            <a  asp-area="" asp-controller="Products" asp-action="ProductPassive" asp-route-id="@item.Id" class="btn btn-warning">Pasif Yap</a>
+                                            <a asp-area="" asp-controller="Products" asp-action="ProductPassive" asp-route-id="@item.Id" class="btn btn-warning">Pasif Yap</a>
                                             <a asp-area="" asp-controller="Products" asp-action="ProductDelete" asp-route-id="@item.Id" class="btn btn-danger">Silmek İstiyorum</a>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
                                         </div>

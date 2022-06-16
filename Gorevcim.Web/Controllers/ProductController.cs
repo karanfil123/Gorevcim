@@ -4,14 +4,15 @@ using Gorevcim.Core.Dtos;
 using Gorevcim.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Dynamic;
+
 namespace Gorevcim.Web.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
-        
+        private readonly IMapper _mapper;       
 
         public ProductsController(IProductService productService, ICategoryService categoryService, IMapper mapper)
         {
@@ -19,18 +20,13 @@ namespace Gorevcim.Web.Controllers
             _categoryService = categoryService;
             _mapper = mapper;
         }
-
-
         public async Task<IActionResult> Index()
         {
+            dynamic mymodel = new ExpandoObject();
             var result = await _productService.GetAllWebProductCategories();
-            return View(result);
-        }
-        public async Task<IActionResult> PassiveProducts()
-        {
-            var result = await _productService.GetAllWebProductsCategoryPASSIVE();
-            return View(result);
-        }
+            mymodel._product=result;
+            return View(mymodel);
+        }       
 
         public async Task<IActionResult> ProductDelete(int id)
         {
@@ -39,7 +35,6 @@ namespace Gorevcim.Web.Controllers
             TempData.Add("Success", $"{products.Name} adlı ürün silindi.");
             return RedirectToAction("Index", "Products");
         }
-
         public async Task<IActionResult> ProductSave()
         {
             var categoriess = await _categoryService.GetAllAsync();            
