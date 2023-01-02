@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gorevcim.Repository\Gorevcim.Repository.csproj" />
+    <ProjectReference Include="..\Gorevcim.Repository\ECommerce.Repository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gorevcim.Services\Gorevcim.Services.csproj" />
+    <ProjectReference Include="..\Gorevcim.Services\ECommerce.Services.csproj" />
   </ItemGroup>
 
 </Project>

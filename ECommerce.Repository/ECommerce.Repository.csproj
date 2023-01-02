@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GorevcimCore\Gorevcim.Core.csproj" />
+    <ProjectReference Include="..\GorevcimCore\ECommerce.Core.csproj" />
   </ItemGroup>
 
 </Project>

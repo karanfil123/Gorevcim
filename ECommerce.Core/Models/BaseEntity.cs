@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gorevcim.Core
+namespace ECommerce.Core
 {
     public abstract class BaseEntity
     {
